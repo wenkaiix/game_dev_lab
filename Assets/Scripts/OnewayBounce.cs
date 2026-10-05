@@ -8,6 +8,8 @@ public class Bouncebox : MonoBehaviour
     private Vector2 startPosition;
     private bool bouncing = false;
     private bool coin = true;
+    public int maxHits = -1;
+    public Sprite emptyBlock;
 
     void Start()
     {
@@ -23,15 +25,28 @@ public class Bouncebox : MonoBehaviour
         foreach (ContactPoint2D contact in collision.contacts)
         {
             // when mario hits bottom of bbox
-            if (contact.normal.y > 0.5f && !bouncing)
+            if (contact.normal.y > 0.5f && !bouncing && maxHits != 0)
             {
                 if (item != null && coin){
                     Instantiate(item, transform. position, Quaternion.identity);
                     coin = false;
                 }
                 StartCoroutine(Bounce());
+                Hit();
                 break;
             }
+        }
+    }
+
+
+    private void Hit()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        maxHits--;
+        if (maxHits == 0) {
+            spriteRenderer.sprite = emptyBlock;
+            spriteRenderer.sortingLayerName = "Obstales" ;
+            spriteRenderer.sortingOrder = 1 ;
         }
     }
 

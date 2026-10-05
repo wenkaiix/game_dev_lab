@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.16643935, y: 0.16122547}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.01
 --- !u!114 &2701170813741301578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bouncebox
   item: {fileID: 1322502623900488364, guid: 5cc021cf7356735459076c6077777dbd, type: 3}
+  maxHits: -1
+  emptyBlock: {fileID: 0}
 --- !u!50 &9007342393587195139
 Rigidbody2D:
   serializedVersion: 5

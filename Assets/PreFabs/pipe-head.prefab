@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5253017205480716834}
   - component: {fileID: 7388565157670911671}
   - component: {fileID: 8781284258766374182}
+  - component: {fileID: 7062783013624730143}
   m_Layer: 7
   m_Name: pipe-head
   m_TagString: Untagged
@@ -138,8 +139,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.014697992, y: 0.16115642}
-      - {x: -0.16148397, y: 0.1610534}
+    - - {x: 0.027830947, y: 0.10030708}
+      - {x: -0.08065434, y: 0.09943737}
       - {x: -0.16150972, y: 0.094480425}
       - {x: -0.16175875, y: 0.080916554}
       - {x: -0.16143799, y: 0.010298207}
@@ -148,5 +149,51 @@ PolygonCollider2D:
       - {x: 0.14307272, y: -0.15984976}
       - {x: 0.14192487, y: 0.008250356}
       - {x: 0.16282968, y: 0.008733541}
-      - {x: 0.16123506, y: 0.16162123}
+      - {x: 0.1607973, y: 0.09858303}
   m_UseDelaunayMesh: 1
+--- !u!61 &7062783013624730143
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7873138532643125961}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.00016441196, y: 0.13400626}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.34, y: 0.34}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.3222928, y: 0.054250002}
+  m_EdgeRadius: 0
