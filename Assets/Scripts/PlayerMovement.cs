@@ -159,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
             // jump higher
             marioBody.AddForce(Vector2.up * upSpeed * 30, ForceMode2D.Force);
             jumpedState = false;
-
         }
     }
 

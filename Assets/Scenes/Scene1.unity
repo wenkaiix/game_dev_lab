@@ -3778,6 +3778,7 @@ GameObject:
   - component: {fileID: 1927076945}
   - component: {fileID: 1927076946}
   - component: {fileID: 1927076947}
+  - component: {fileID: 1927076948}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Player
@@ -3955,7 +3956,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 0.13, y: 0.16}
-  m_EdgeRadius: 0.05
+  m_EdgeRadius: 0
 --- !u!114 &1927076944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4107,7 +4108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 454d3ba818ce17e4fb1891e56327fdf4, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -4118,12 +4119,117 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076948}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: OnMoveAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b95f2e60-d487-4e4b-98b3-9a16f7483b55
+    m_ActionName: 'gameplay/move[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076948}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: OnJumpAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f99dc8d4-4a16-4158-97d9-0c7194cd2231
+    m_ActionName: 'gameplay/jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076948}
+        m_TargetAssemblyTypeName: ActionManager, Assembly-CSharp
+        m_MethodName: OnJumpHoldAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6c640bd0-4e32-44e5-a619-0ba46e6982b9
+    m_ActionName: 'gameplay/jumphold[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1927076948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927076937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fc7ffb75df0ee4b8c48c29e0c3862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionManager
+  jump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076942}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  jumpHold:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076942}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: JumpHold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  moveCheck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1927076942}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: MoveCheck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1980749857
 GameObject:
   m_ObjectHideFlags: 0
