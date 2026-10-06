@@ -6,14 +6,17 @@ public class Coin_spawn : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 startPosition;
     public AudioSource coinAudio;
+    GameManager gameManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         startPosition = rb.position;
         StartCoroutine(Bounce());
+        
     }
 
     void PlayCoinSound()
@@ -47,7 +50,7 @@ public class Coin_spawn : MonoBehaviour
         }
 
         rb.position = startPosition;
-
+        gameManager.IncreaseScore(1);
         Destroy(gameObject);
     }
 }
