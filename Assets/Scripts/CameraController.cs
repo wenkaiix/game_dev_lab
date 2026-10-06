@@ -22,9 +22,7 @@ public class CameraController : MonoBehaviour
         viewportHalfWidth  =  Mathf.Abs(bottomLeft.x  -  this.transform.position.x);
         offset  =  this.transform.position.x  -  player.position.x;
         startX  =  this.transform.position.x;
-        endX  =  endLimit.transform.position.x  -  viewportHalfWidth;
-        Debug.Log(this.transform.position);
-        
+        endX  =  endLimit.transform.position.x  -  viewportHalfWidth;        
     }
 
     // Update is called once per frame

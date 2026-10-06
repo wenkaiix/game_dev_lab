@@ -11,6 +11,13 @@ public class Bouncebox : MonoBehaviour
     public int maxHits = -1;
     public Sprite emptyBlock;
 
+
+    // to store initial state
+    private int initialMaxHits;
+    private bool initialCoin;
+    private Sprite initialSprite;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,6 +25,12 @@ public class Bouncebox : MonoBehaviour
 
         // question box stays completely fixed
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        //initialise start state
+        initialMaxHits = maxHits;
+        initialCoin = coin;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        initialSprite = spriteRenderer.sprite;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -48,6 +61,17 @@ public class Bouncebox : MonoBehaviour
             spriteRenderer.sortingLayerName = "Obstales" ;
             spriteRenderer.sortingOrder = 1 ;
         }
+    }
+
+    public void GameRestart()
+    {
+        // reset state of the gameObject
+        bouncing = false;
+        coin = initialCoin;
+        maxHits = initialMaxHits;
+        spriteRenderer.sprite = initialSprite;
+        rb.position = startPosition; // in case it was mid-bounce when reset happened
+        StopAllCoroutines(); // important, cancels any bounce incase they restart while its bouncing
     }
 
     // function for bounce for the question box

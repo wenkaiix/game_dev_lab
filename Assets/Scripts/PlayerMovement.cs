@@ -90,9 +90,16 @@ public class PlayerMovement : MonoBehaviour
           marioAudio.PlayOneShot(marioDeath);
           alive = false;
           //GameOver();
-          
+        //   gameManeger.GameOver();
       }
   }
+
+  public void GameOver()
+    {
+        gameManeger.GameOver();
+    }
+
+    
 
 
     private bool moving = false;
@@ -128,14 +135,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void RestartButtonCallback(int input)
-    {
-        Debug.Log("Restart!");
-        // reset everything
-        ResetGame();
-        // resume time
-        Time.timeScale = 1.0f;
-    }
+    // public void RestartButtonCallback(int input)
+    // {
+    //     Debug.Log("Restart!");
+    //     Time.timeScale = 1.0f;
+    // }
 
     private bool jumpedState = false;
     public void Jump()
@@ -176,37 +180,54 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public JumpOverGoomba jumpOverGoomba;
+    // public JumpOverGoomba jumpOverGoomba;
 
-    private void ResetGame()
+    // private void ResetGame()
+    // {
+    //     // reset position
+    //     marioBody.transform.position = new Vector3(-0.273f, 0.104f, 0.0f);
+    //     // reset camera position
+    //     gameCamera.position = new Vector3(0, 0.47f, -1.09f);
+    //     // reset sprite direction
+    //     faceRightState = true;
+    //     marioSprite.flipX = false;
+    //     // reset score
+    //     scoreText.text = "Score: 0";
+    //     // reset Goomba
+    //     foreach (Transform eachChild in enemies.transform)
+    //     {
+    //         eachChild.transform.position = eachChild.GetComponent<EnemyMovement>().startPosition;
+    //     }
+    //     jumpOverGoomba.score = 0;
+    //     // reset animation
+    //     marioAnimator.SetTrigger("gameRestart");
+    //     alive = true;
+    // }
+
+        public GameManager gameManeger; 
+        public void GameRestart()
     {
         // reset position
         marioBody.transform.position = new Vector3(-0.273f, 0.104f, 0.0f);
-        // reset camera position
-        gameCamera.position = new Vector3(0, 0.47f, -1.09f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-        // reset score
-        scoreText.text = "Score: 0";
-        // reset Goomba
-        foreach (Transform eachChild in enemies.transform)
-        {
-            eachChild.transform.position = eachChild.GetComponent<EnemyMovement>().startPosition;
 
-        }
-        jumpOverGoomba.score = 0;
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
+
+        // reset camera position
+        gameCamera.position = new Vector3(0, 0.47f, -1.09f);
     }
 
-    public GameOverScreen GameOverScreen;
-    public void GameOver(){ 
-        Time.timeScale = 0.0f;
-        GameOverScreen.Setup(jumpOverGoomba.score);
+    // public GameOverScreen GameOverScreen;
+    // public void GameOver(){ 
+    //     Time.timeScale = 0.0f;
+    //     GameOverScreen.Setup(jumpOverGoomba.score);
+    // }
 
-    }
+    
 
     
 }
