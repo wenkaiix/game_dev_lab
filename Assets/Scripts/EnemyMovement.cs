@@ -13,9 +13,17 @@ public class EnemyMovement : MonoBehaviour
 
     private Rigidbody2D enemyBody;
     public Vector3 startPosition;
+    public Animator goombaAnimator;
+    public AudioSource goombaAudio;
+    private bool isSquashed = false;
+    GameManager gameManager;
+    PlayerMovement playerMovement;
 
     void Start()
     {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        goombaAudio = GetComponent<AudioSource>();
         enemyBody = GetComponent<Rigidbody2D>();
         // get the starting position
         Debug.Log(transform.position); 
@@ -48,14 +56,66 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-  {
-     Debug.Log(other.gameObject.name);
-  }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player") && !isSquashed && playerMovement.alive)
+        {
+            foreach (ContactPoint2D contact in col.contacts)
+            {
+                // Print how many points are colliding with this transform
+                Debug.Log("Points colliding: " + col.contacts.Length);
+
+                // Print the normal of the first point in the collision.
+                Debug.Log("Normal of the first point: " + col.contacts[0].normal);
+
+                // Draw a different colored ray for every normal in the collision
+                foreach (var item in col.contacts)
+                {
+                    Debug.DrawRay(item.point, item.normal * 100, Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f), 10f);
+                }
+
+                // when mario lands on TOP of goomba
+                if (contact.normal.y < -0.5f)
+                {
+                    isSquashed = true;
+                    goombaAnimator.SetTrigger("onSquash");
+                    goombaAudio.PlayOneShot(goombaAudio.clip);
+                    gameManager.IncreaseScore(1);
+                    break;
+                }
+                else
+                {
+                    // play death animation
+                    playerMovement.marioAnimator.Play("Mario-die");
+                    // play death animation
+                    playerMovement.marioDeathAudio.PlayOneShot(playerMovement.marioDeathAudio.clip);
+                    playerMovement.alive = false;
+                    // im choosing to put this portion here because i feel like death condition for mario might change
+                    // depending on what enemies he encounters?
+                }
+            }
+        }
+    }
+
+    void squashToGround()
+    {
+        // bring the y position lower cuz when it changes sprite it floats in the air
+        transform.position = new Vector3(gameObject.transform.position.x, -0.199f, gameObject.transform.position.z);
+        // make it stop moveing when dead
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+    }
+
+    public void selfDestruct()
+    {
+        gameObject.SetActive(false); // 
+    }
 
   
     public void GameRestart()
     {
+        gameObject.SetActive(true);
+        enemyBody.constraints = RigidbodyConstraints2D.None;
+        isSquashed = false;
         transform.localPosition = startPosition;
         originalX = transform.position.x;
         moveRight = -1;

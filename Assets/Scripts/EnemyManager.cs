@@ -20,6 +20,11 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
+            // attempting to recreate goomba on reset if i destroy it 
+            if (child == null)
+            {
+                Instantiate(child, transform. position, Quaternion.identity);                
+            }
             child.GetComponent<EnemyMovement>().GameRestart();
         }
     }

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool faceRightState = true;
     public Animator marioAnimator;
     public AudioSource marioAudio;
-    public AudioClip marioDeath;
+    public AudioSource marioDeathAudio;
     public float deathImpulse = 15;
     public Transform gameCamera;
 
@@ -76,23 +76,23 @@ public class PlayerMovement : MonoBehaviour
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
+
+
         }
     }
 
-      void OnTriggerEnter2D(Collider2D other)
-  {
-      if (other.gameObject.CompareTag("Enemy") && alive)
-      {
-          Debug.Log("Collided with goomba!");
-          //Time.timeScale = 0.0f;
-          // play death animation
-          marioAnimator.Play("Mario-die");
-          marioAudio.PlayOneShot(marioDeath);
-          alive = false;
-          //GameOver();
-        //   gameManeger.GameOver();
-      }
-  }
+//       void OnTriggerEnter2D(Collider2D other)
+//   {
+//       if (other.gameObject.CompareTag("Enemy") && alive)
+//       {
+//           Debug.Log("Collided with goomba!");
+//           //Time.timeScale = 0.0f;
+//           // play death animation
+//           marioAnimator.Play("Mario-die");
+//           marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
+//           alive = false;
+//       }
+//   }
 
   public void GameOver()
     {
@@ -135,12 +135,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // public void RestartButtonCallback(int input)
-    // {
-    //     Debug.Log("Restart!");
-    //     Time.timeScale = 1.0f;
-    // }
-
     private bool jumpedState = false;
     public void Jump()
     {
@@ -180,30 +174,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    // public JumpOverGoomba jumpOverGoomba;
-
-    // private void ResetGame()
-    // {
-    //     // reset position
-    //     marioBody.transform.position = new Vector3(-0.273f, 0.104f, 0.0f);
-    //     // reset camera position
-    //     gameCamera.position = new Vector3(0, 0.47f, -1.09f);
-    //     // reset sprite direction
-    //     faceRightState = true;
-    //     marioSprite.flipX = false;
-    //     // reset score
-    //     scoreText.text = "Score: 0";
-    //     // reset Goomba
-    //     foreach (Transform eachChild in enemies.transform)
-    //     {
-    //         eachChild.transform.position = eachChild.GetComponent<EnemyMovement>().startPosition;
-    //     }
-    //     jumpOverGoomba.score = 0;
-    //     // reset animation
-    //     marioAnimator.SetTrigger("gameRestart");
-    //     alive = true;
-    // }
-
         public GameManager gameManeger; 
         public void GameRestart()
     {
@@ -219,15 +189,5 @@ public class PlayerMovement : MonoBehaviour
 
         // reset camera position
         gameCamera.position = new Vector3(0, 0.47f, -1.09f);
-    }
-
-    // public GameOverScreen GameOverScreen;
-    // public void GameOver(){ 
-    //     Time.timeScale = 0.0f;
-    //     GameOverScreen.Setup(jumpOverGoomba.score);
-    // }
-
-    
-
-    
+    }    
 }
