@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; // for textmeshpro
+using UnityEngine.SceneManagement;
 
 
 public class PlayerMovement : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public GameObject enemies;
+    // public TextMeshProUGUI scoreText;
+    // public GameObject enemies;
     public float speed = 10;
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource marioDeathAudio;
     public float deathImpulse = 15;
     public Transform gameCamera;
+    private Vector3 startPosition;
+    // public float offset; //for the camera to be set correctly
 
     // state
     [System.NonSerialized]
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created. test
     void Start()
     {
+        startPosition = transform.position;
         marioSprite = GetComponent<SpriteRenderer>();
 
         // Set to be 30 FPS
@@ -32,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
         marioBody = GetComponent<Rigidbody2D>();
         // update animator state
         marioAnimator.SetBool("onGround", onGroundState);
+        // subscribe to scene manager scene change
+        // SceneManager.activeSceneChanged += SetStartingPosition;
     }
 
     // Update is called once per frame
@@ -76,27 +82,14 @@ public class PlayerMovement : MonoBehaviour
             onGroundState = true;
             // update animator state
             marioAnimator.SetBool("onGround", onGroundState);
-
-
         }
     }
 
-//       void OnTriggerEnter2D(Collider2D other)
-//   {
-//       if (other.gameObject.CompareTag("Enemy") && alive)
-//       {
-//           Debug.Log("Collided with goomba!");
-//           //Time.timeScale = 0.0f;
-//           // play death animation
-//           marioAnimator.Play("Mario-die");
-//           marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
-//           alive = false;
-//       }
-//   }
 
   public void GameOver()
     {
-        gameManeger.GameOver();
+        // GameManager.instance.gameOver
+        // GameManager.instance.gameOver.AddListener(GameOver);
     }
 
     
@@ -174,11 +167,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-        public GameManager gameManeger; 
+        // public GameManager gameManager; 
         public void GameRestart()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-0.273f, 0.104f, 0.0f);
+        marioBody.transform.position = startPosition;
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -188,6 +181,15 @@ public class PlayerMovement : MonoBehaviour
         alive = true;
 
         // reset camera position
-        gameCamera.position = new Vector3(0, 0.47f, -1.09f);
+        // gameCamera.position = new Vector3(0, 0.47f, -1.09f);
+        // gameCamera.position = new Vector3(marioBody.transform.position.x,marioBody.transform.position.y + offset, -1.09f);
+
     }    
+
+
+    void Awake(){
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
 }

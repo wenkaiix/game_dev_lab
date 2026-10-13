@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
 
     private float originalX;
-    private float maxOffset = 1.0f;
+    public float maxOffset = 1.0f;
     private float enemyPatroltime = 2.0f;
     private int moveRight = -1;
     private Vector2 velocity;
@@ -120,6 +120,11 @@ public class EnemyMovement : MonoBehaviour
         originalX = transform.position.x;
         moveRight = -1;
         ComputeVelocity();
+    }
+
+    void Awake()
+    {
+        GameManager.instance.gameRestart.AddListener(GameRestart);
     }
 
 }

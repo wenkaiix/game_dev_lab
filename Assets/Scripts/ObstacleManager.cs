@@ -24,4 +24,10 @@ public class ObstacleManager : MonoBehaviour
             }
         }
     }
+
+    void Awake(){
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(GameRestart);
+    }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     // events
     public UnityEvent gameStart;
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     {
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+        // subscribe to scene manager scene change
+        SceneManager.activeSceneChanged += SceneSetup;
     }
 
     // Update is called once per frame
@@ -51,5 +54,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         gameOver.Invoke();
+    }
+    
+    public void SceneSetup(Scene current, Scene next)
+    {
+        gameStart.Invoke();
+        SetScore(score);
     }
 }

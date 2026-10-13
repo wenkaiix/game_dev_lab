@@ -527,7 +527,7 @@ TextureImporter:
         width: 48
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -536,6 +536,72 @@ TextureImporter:
       bones: []
       spriteID: 4c7107c09293f4e418d07c1c84dd35d0
       internalID: 956611472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 954
+        width: 82
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34e5130cabab8d4bbc32fc2f1ef6700
+      internalID: 1314437271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_side
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 1118
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6dda2d2ca16d944c876c6308c334b20
+      internalID: -1163344447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pipe_side_body
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 1118
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a9a18b805441b744810edf2f204dc24
+      internalID: 1920275968
       vertices: []
       indices: 
       edges: []
@@ -562,6 +628,7 @@ TextureImporter:
       GroundBrown: 232600699
       big_hill: -124278983
       brick: 995737881
+      castle: 1314437271
       coin-1: -570922218
       goomba-left-foot: -661268052
       goomba-right-foot: -1750142322
@@ -570,6 +637,8 @@ TextureImporter:
       moving-platform-6: 956611472
       pipe_body: -2011248617
       pipe_head: -2062493076
+      pipe_side: -1163344447
+      pipe_side_body: 1920275968
       question_mark_block: 1296129534
       small_hill: 26542188
       used_questionmark: -290856761
