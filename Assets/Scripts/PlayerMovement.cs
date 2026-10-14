@@ -9,14 +9,18 @@ public class PlayerMovement : MonoBehaviour
 {
     // public TextMeshProUGUI scoreText;
     // public GameObject enemies;
-    public float speed = 10;
+    public GameConstants gameConstants;
+    float speed;
+    
+    float maxSpeed;
+    float upSpeed;
+    float deathImpulse;
     private Rigidbody2D marioBody;
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
     public Animator marioAnimator;
     public AudioSource marioAudio;
     public AudioSource marioDeathAudio;
-    public float deathImpulse = 15;
     public Transform gameCamera;
     private Vector3 startPosition;
     // public float offset; //for the camera to be set correctly
@@ -24,10 +28,23 @@ public class PlayerMovement : MonoBehaviour
     // state
     [System.NonSerialized]
     public bool alive = true;
+    private bool onGroundState = true;
+
+    private bool jumpedState = false;
+
+    private bool moving = false;
+    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7); // for collision 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created. test
     void Start()
     {
+        Debug.Log(gameConstants.speed);
+        // Set constants
+        speed = gameConstants.speed;
+        maxSpeed = gameConstants.maxSpeed;
+        deathImpulse = gameConstants.deathImpulse;
+        upSpeed = gameConstants.upSpeed;
+        //get starting position
         startPosition = transform.position;
         marioSprite = GetComponent<SpriteRenderer>();
 
@@ -67,13 +84,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public float maxSpeed = 20;
-    public float upSpeed = 2;
-    private bool onGroundState = true;
-
-
-
-    int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
     void OnCollisionEnter2D(Collision2D col)
     {
         // if (col.gameObject.CompareTag("Ground")) onGroundState = true;
@@ -86,16 +96,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-  public void GameOver()
+    public void GameOver() // neeed to be called here so that we can put it at the end of our animation.so animation calls it 
     {
-        // GameManager.instance.gameOver
-        // GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.GameOver(); // then calls game manager to signal to everyone else that gameover alr
     }
 
     
 
-
-    private bool moving = false;
     // FixedUpdate is called 50 times a second
     void  FixedUpdate()
     {
@@ -128,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool jumpedState = false;
     public void Jump()
     {
         if (alive && onGroundState)

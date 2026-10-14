@@ -18,6 +18,9 @@ public class HUDManager : MonoBehaviour
     public Transform restartButton;
 
     public GameObject gameOverPanel;
+    public GameObject highscoreText; // SO
+    public IntVariable gameScore; // SO
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,10 @@ public class HUDManager : MonoBehaviour
         gameOverPanel.SetActive(true);
         scoreText.transform.localPosition = scoreTextPosition[1];
         restartButton.localPosition = restartButtonPosition[1];
+        // set highscore
+        highscoreText.GetComponent<TextMeshProUGUI>().text = "TOP- " + gameScore.previousHighestValue.ToString("D6");
+        // show
+        highscoreText.SetActive(true);
     }
 
     void Awake()

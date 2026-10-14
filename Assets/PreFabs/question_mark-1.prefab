@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8400620568309946550}
   - component: {fileID: 6228561993510046239}
   - component: {fileID: 3392039154153106719}
-  - component: {fileID: -8182957553843875391}
   - component: {fileID: 441028774234042131}
+  - component: {fileID: -5216936336881963585}
   m_Layer: 0
   m_Name: question_mark-1
   m_TagString: Untagged
@@ -140,21 +140,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.16059458, y: 0.16216217}
   m_EdgeRadius: 0.01
---- !u!114 &-8182957553843875391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5886393884985269388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd742690a108d64f975d603ad8a7128, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bouncebox
-  item: {fileID: 1322502623900488364, guid: 5cc021cf7356735459076c6077777dbd, type: 3}
-  maxHits: 1
-  emptyBlock: {fileID: -290856761, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
 --- !u!50 &441028774234042131
 Rigidbody2D:
   serializedVersion: 5
@@ -182,3 +167,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5216936336881963585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886393884985269388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd742690a108d64f975d603ad8a7128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bouncebox
+  item: {fileID: 1322502623900488364, guid: 5cc021cf7356735459076c6077777dbd, type: 3}
+  maxHits: 1
+  emptyBlock: {fileID: -290856761, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}

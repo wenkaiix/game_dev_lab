@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ButtonController : MonoBehaviour
+public class ButtonController : MonoBehaviour, IInteractiveButton
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,6 +16,7 @@ public class ButtonController : MonoBehaviour
 
         public void ButtonClick()
     {
+        Debug.Log("Onclick restart button");
         GameManager.instance.GameRestart();
     }
 }

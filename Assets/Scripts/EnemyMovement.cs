@@ -90,6 +90,7 @@ public class EnemyMovement : MonoBehaviour
                     // play death animation
                     playerMovement.marioDeathAudio.PlayOneShot(playerMovement.marioDeathAudio.clip);
                     playerMovement.alive = false;
+                    // GameManager.instance.GameOver();
                     // im choosing to put this portion here because i feel like death condition for mario might change
                     // depending on what enemies he encounters?
                 }
